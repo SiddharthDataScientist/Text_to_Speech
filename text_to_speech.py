@@ -10,7 +10,12 @@ app = FastAPI()
 def convert_text_to_speech(text: str):
     current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
     audio_file = f"Audio_{current_datetime}.mp3"
-    speech = gTTS(text=text, lang='en')
+    # speech = gTTS(text=text, lang='en', slow= False, lang_check=True) --ENGLISH
+    speech = gTTS(text=text, lang='kn', slow= False, lang_check=True) 
+    # speech = gTTS(text=text, lang='hi', slow= False, lang_check=True) --> HINDI
+    # speech = gTTS(text=text, lang='ta', slow= False) --> TAMIL
+    # speech = gTTS(text=text, lang='te', slow= False) -->TELUGU
+
     speech.save(audio_file)
     return FileResponse(audio_file)
 
